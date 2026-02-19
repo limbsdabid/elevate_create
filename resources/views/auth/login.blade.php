@@ -74,6 +74,15 @@
                     @enderror
                 </div>
 
+                {{-- Remember Me --}}
+                <div class="flex items-center justify-between">
+                    <label class="flex items-center gap-2 cursor-pointer">
+                        <input type="checkbox" name="remember"
+                            class="w-4 h-4 text-blue-600 border-slate-300 rounded focus:ring-blue-500">
+                        <span class="text-sm text-slate-600">Remember me</span>
+                    </label>
+                </div>
+
                 <button type="submit"
                     class="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 rounded-xl transition duration-200 shadow-lg shadow-blue-200">
                     Sign In →

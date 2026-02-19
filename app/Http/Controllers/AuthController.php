@@ -49,7 +49,9 @@ class AuthController extends Controller
             'password' => 'required',
         ]);
 
-        if (Auth::attempt(['email' => $request->email, 'password' => $request->password])) {
+        $remember = $request->has('remember'); // ← i-add ito
+
+        if (Auth::attempt(['email' => $request->email, 'password' => $request->password], $remember)) {
             return redirect('/dashboard');
         }
 

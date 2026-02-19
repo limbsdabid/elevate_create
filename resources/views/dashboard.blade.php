@@ -4,25 +4,28 @@
 <div class="min-h-screen bg-slate-50">
 
     {{-- Navbar --}}
-    <nav class="bg-white border-b border-slate-200 px-8 py-4 flex justify-between items-center shadow-sm">
-        <div class="flex items-center gap-3">
-            <span class="text-2xl">🏢</span>
-            <h1 class="text-xl font-bold text-blue-600">GenSpace</h1>
-        </div>
-        <div class="flex items-center gap-4">
-            <div class="text-right">
-                <p class="text-sm font-semibold text-slate-800">{{ Auth::user()->name }}</p>
-                <p class="text-xs text-slate-500">{{ Auth::user()->department }}</p>
+<nav class="bg-white border-b border-slate-200 px-8 py-4 flex justify-between items-center shadow-sm">
+    <div class="flex items-center gap-3">
+        <span class="text-2xl">🏢</span>
+        <h1 class="text-xl font-bold text-blue-600">GenSpace</h1>
+    </div>
+    <div class="flex items-center gap-4">
+        <a href="/profile"
+            class="flex items-center gap-2 text-slate-600 hover:text-blue-600 text-sm font-medium transition">
+            <div class="w-8 h-8 bg-blue-600 rounded-full flex items-center justify-center text-white text-sm font-bold">
+                {{ strtoupper(substr(Auth::user()->name, 0, 1)) }}
             </div>
-            <form method="POST" action="/logout">
-                @csrf
-                <button type="submit"
-                    class="bg-slate-100 hover:bg-red-50 hover:text-red-600 text-slate-600 px-4 py-2 rounded-xl text-sm font-medium transition">
-                    Logout
-                </button>
-            </form>
-        </div>
-    </nav>
+            {{ Auth::user()->name }}
+        </a>
+        <form method="POST" action="/logout">
+            @csrf
+            <button type="submit"
+                class="bg-slate-100 hover:bg-red-50 hover:text-red-600 text-slate-600 px-4 py-2 rounded-xl text-sm font-medium transition">
+                Logout
+            </button>
+        </form>
+    </div>
+</nav>
 
     {{-- Main Content --}}
     <div class="p-8 max-w-7xl mx-auto">

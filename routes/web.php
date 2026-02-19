@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\ProfileController;
 
 // Redirect root to login
 Route::get('/', function () {
@@ -19,7 +20,16 @@ Route::post('/login', [AuthController::class, 'login']);
 // Logout
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
-// Dashboard — protected (dapat naka-login)
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware('auth')->name('dashboard');
+// Protected Routes — dapat naka-login
+Route::middleware('auth')->group(function () {
+
+    // Dashboard
+    Route::get('/dashboard', function () {
+        return view('dashboard');
+    })->name('dashboard');
+
+    // Profile
+    Route::get('/profile', [ProfileController::class, 'profile'])->name('profile');
+    Route::post('/profile/update', [ProfileController::class, 'update'])->name('profile.update');
+    Route::post('/profile/change-password', [ProfileController::class, 'changePassword'])->name('profile.change-password');
+});
